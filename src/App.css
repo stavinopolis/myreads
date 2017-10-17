@@ -8,6 +8,11 @@ body, .app {
   background: white;
 }
 
+body::-webkit-scrollbar-thumb  { 
+  background:red;
+}
+
+
 /* main page */
 
 .list-books-title {
