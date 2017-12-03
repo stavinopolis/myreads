@@ -27,4 +27,5 @@ class BookView extends Component {
 	}
 }
 
+
 export default BookView

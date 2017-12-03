@@ -16,24 +16,48 @@ class SearchBooks extends Component {
     this.search(query)
   };
 
+
+
+  
+  merge = (mine,results) => {
+    return results.map((item)=>{
+      item.shelf="none";
+      for (var i = 0; i < mine.length; i++) {
+        // console.log(mine[i].id);
+        // console.log(item.id);
+        // console.log(mine[i].id==item.id);
+        if(mine[i].id==item.id){
+          item.shelf=mine[i].shelf
+          console.log("match!!!")
+        }
+      }
+      console.log(item)
+      return item;
+    })
+  }  
+
   search(query) {
      if (query.length < 1) {
       return true;
     }
     BooksAPI.search(query, 25).then(response => {
-          console.log(response);
+          // console.log(response);
           if (response && response.error) {
           this.setState({
             results: []
           });
         } else {
-          this.setState({results:response});
+          this.setState({results:this.merge(this.props.shelved, response)});
         }
         }
     );
-  }
+  } 
+
 
 	render () {
+    let existing = this.props.shelved;    
+    let marge = this.merge(existing, this.state.results);
+    // console.log(marge);
 	return (
 		<div className="search-books">
             <div className="search-books-bar">

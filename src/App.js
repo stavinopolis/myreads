@@ -32,7 +32,7 @@ class BooksApp extends React.Component {
        <ListBooks books={this.state.books} reshelf={this.updateBook}/>
       )}/>      
       <Route path="/search" render={ () => (
-       <SearchBooks getResults={this.searchBook} reshelf={this.updateBook}/>
+       <SearchBooks getResults={this.searchBook} shelved={this.state.books} reshelf={this.updateBook}/>
       )}/>
           
       </div>
